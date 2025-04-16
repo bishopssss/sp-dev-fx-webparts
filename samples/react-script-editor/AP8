@@ -1,0 +1,64 @@
+<style>
+.box {
+  width: 200px;
+  height: 100px;
+  background-color: #0078d4;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  cursor: pointer;
+  border-radius: 10px;
+  font-size: 18px;
+}
+.popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border: 2px solid #0078d4;
+  padding: 20px;
+  z-index: 1000;
+}
+.popup img {
+  max-width: 400px;
+  height: auto;
+}
+.popup-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 999;
+}
+</style>
+
+<div class="box" onclick="showPopup('img1')">Bild 1 anzeigen</div>
+<div class="box" onclick="showPopup('img2')">Bild 2 anzeigen</div>
+
+<div class="popup-overlay" id="overlay" onclick="closePopup()"></div>
+
+<div class="popup" id="img1">
+  <img src="https://via.placeholder.com/400x300.png?text=Bild+1" alt="Bild 1">
+</div>
+<div class="popup" id="img2">
+  <img src="https://via.placeholder.com/400x300.png?text=Bild+2" alt="Bild 2">
+</div>
+
+<script>
+function showPopup(id) {
+  document.getElementById('overlay').style.display = 'block';
+  document.getElementById(id).style.display = 'block';
+}
+
+function closePopup() {
+  document.getElementById('overlay').style.display = 'none';
+  document.querySelectorAll('.popup').forEach(p => p.style.display = 'none');
+}
+</script>
